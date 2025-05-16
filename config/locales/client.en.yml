@@ -13,7 +13,8 @@ en:
       max_entries_reached_btn: "Lottery Full"
       confirm_cost_participation: "This lottery costs %{cost} points to enter. Are you sure you want to participate?"
       joining: "Processing your entry..."
-      success_joined_alert: "You have successfully joined the lottery!"
-      success_message_inline: "Successfully joined!"
-      # Error messages are mostly handled by server-side keys, but some JS specific ones can be here.
-      # generic_error_js: "An error occurred on the client side."
+      success_joined_alert: "You have successfully joined the lottery!" # Alert message
+      success_message_inline: "Successfully joined!" # Inline message in messageArea
+      generic_error_client: "An error occurred. Please try again." # Client-side generic error
+      network_error_client: "A network error occurred. Please check your connection and try again."
+      csrf_token_error: "Could not verify your request. Please refresh the page and try again."
