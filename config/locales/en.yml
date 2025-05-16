@@ -1,0 +1,15 @@
+en:
+  site_settings:
+    lottery_enabled: "Enable Lottery Plugin"
+  lottery:
+    points_deduction_reason: "Participation in lottery: %{title}"
+    success_joined: "Successfully joined the lottery!"
+    errors:
+      not_found: "Lottery not found."
+      reached_max_entries: "This lottery has reached its maximum number of entries."
+      insufficient_points: "You do not have enough points to enter. Cost: %{cost} points."
+      already_participated: "You have already participated in this lottery."
+      transaction_failed: "Could not complete your participation due to a transaction error. Please try again."
+      points_system_error: "There was an issue with the points system. Could not deduct points."
+      generic_error: "An unexpected error occurred. Please try again."
+      network_error: "A network error occurred. Please check your connection and try again."
