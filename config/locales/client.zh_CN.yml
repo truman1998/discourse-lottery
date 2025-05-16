@@ -1,0 +1,18 @@
+zh_CN:
+  js:
+    lottery:
+      status_limited: "参与人数: %{current}/%{total} (剩余 %{remaining} 名额)"
+      status_unlimited: "参与人数: %{count}"
+      prize: "奖品: %{prizeName}"
+      default_prize: "一份特别的奖品"
+      default_title: "社区抽奖"
+      cost_info: "消耗: %{cost} 积分"
+      cost_free: "消耗: 免费参与！"
+      participate_with_cost_btn: "参与抽奖 (%{cost} 积分)"
+      participate_btn: "参与抽奖"
+      max_entries_reached_btn: "名额已满"
+      confirm_cost_participation: "参与此抽奖活动将花费 %{cost} 积分。您确定要参与吗？"
+      joining: "正在处理您的请求..."
+      success_joined_alert: "您已成功参与抽奖！"
+      success_message_inline: "成功参与！"
+      # generic_error_js: "客户端发生错误。" # 客户端特定错误，如果需要的话
