@@ -1,7 +1,7 @@
 # name: discourse-lottery
 # about: 一个在 Discourse 帖子中创建抽奖的插件。
-# version: 1.0.1
-# authors: 您的名字 (例如, Truman)
+# version: 1.0.2
+# authors: truman1998
 # url: https://github.com/truman1998/discourse-lottery
 # required_version: 2.8.0.beta10
 
@@ -9,8 +9,6 @@ enabled_site_setting :lottery_enabled # 启用抽奖插件的站点设置
 
 # 注册样式表和客户端 JavaScript
 register_asset "stylesheets/common/lottery.scss"
-# 注意: JavaScript 初始化器如果位于约定路径下，则会自动加载
-# assets/javascripts/discourse/initializers/your-initializer.js.es6
 
 after_initialize do
   # 定义插件的 Rails 引擎
@@ -37,6 +35,7 @@ after_initialize do
     if SiteSetting.lottery_enabled # 检查插件是否已启用
       # 确保 post 对象不为 nil 且有内容
       if post && doc
+        # Rails.logger.info "LotteryPlugin: Processing post ID #{post.id} with parser."
         LotteryPlugin::Parser.parse(post, doc) # 调用解析器处理帖子
       end
     end
@@ -58,21 +57,11 @@ after_initialize do
   end
 
   # 如果需要，向帖子序列化器添加数据
-  # 此示例展示了如果抽奖与主题的第一个帖子相关联，
-  # 如何将抽奖数据添加到帖子对象。
   add_to_serializer(:post, :lottery_data, false) do
-    # 检查 post 对象是否响应 :lottery
-    # 以及是否应包含抽奖数据。
-    # 这假设您在 Post 模型上有一个名为 lottery 的方法或关联，
-    # 或者您在其他地方将数据附加到 post 对象。
-    # 对于此插件，抽奖是通过 post_id 识别的，
-    # 所以我们会获取它。
-
-    # 初始化为 nil
-    # Rails.logger.info "正在序列化帖子 #{object.id}, 帖子编号: #{object.post_number}"
+    # Rails.logger.info "LotteryPlugin Serializer: Checking post ID #{object.id}"
     lottery = LotteryPlugin::Lottery.find_by(post_id: object.id) # 通过 post_id 查找抽奖
     if lottery
-      # Rails.logger.info "找到帖子 #{object.id} 的抽奖 ##{lottery.id}"
+      # Rails.logger.info "LotteryPlugin Serializer: Found lottery ##{lottery.id} for post #{object.id}"
       {
         id: lottery.id,
         title: lottery.title,
@@ -80,18 +69,11 @@ after_initialize do
         points_cost: lottery.points_cost,
         max_entries: lottery.max_entries,
         total_entries: lottery.entries.count,
-        # 您可能想在这里添加更多数据，比如当前用户是否已参与
-        # has_entered: current_user ? lottery.entries.exists?(user_id: current_user.id) : false
+        # has_entered: current_user ? lottery.entries.exists?(user_id: current_user.id) : false # 示例：检查用户是否已参与
       }
     else
-      # Rails.logger.info "未找到帖子 #{object.id} 的抽奖"
+      # Rails.logger.info "LotteryPlugin Serializer: No lottery found for post #{object.id}"
       nil # 如果没有抽奖，则明确返回 nil
     end
   end
-
-  # 如果您要向帖子对象本身添加数据 (例如，通过自定义字段或实例变量)
-  # 您可能会使用类似这样的代码：
-  # add_to_serializer(:post, :my_lottery_details) do
-  #   object.custom_fields["my_lottery_details"] || object.instance_variable_get(:@my_lottery_details)
-  # end
 end
