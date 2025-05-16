@@ -1,8 +1,8 @@
 # name: discourse-lottery
 # about: 一个在 Discourse 帖子中创建抽奖的插件。
-# version: 1.0.5
+# version: 1.0.6
 # authors: 您的名字 (例如, Truman)
-# url: https://github.com/truman1998/discourse-lottery
+# url: [https://github.com/truman1998/discourse-lottery](https://github.com/truman1998/discourse-lottery)
 # required_version: 2.8.0.beta10
 
 # Rails.logger.info "LotteryPlugin: plugin.rb TOP LEVEL - File is being loaded."
@@ -106,48 +106,3 @@ end
 
 # Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
 ```
-
-**2. 重建容器**
-```bash
-cd /var/discourse
-./launcher rebuild app
-```
-
-**3. 获取并分析完整的错误日志**
-
-容器启动后：
-   a. **立即**进入容器并开始监控日志：
-      ```bash
-      ./launcher enter app
-      tail -f /shared/log/rails/production.log
-      ```
-   b. 在另一个终端或浏览器中，**访问您的论坛首页一次**，以触发 "Oops" 页面。
-   c. 回到监控日志的终端，**复制从您访问首页那一刻起（即 `Started GET "/" ...` 日志行）到 `Completed 500 Internal Server Error ...` 之间的所有日志内容。**
-
-   **我们需要找到紧接在 `Completed 500 Internal Server Error` 之前的、详细的 Ruby 错误信息和多行堆栈跟踪 (stack trace)。**
-
-   例如，您应该寻找类似这样的模式：
-   ```
-   Started GET "/" for [IP_ADDRESS] at [TIMESTAMP]
-   Processing by ListController#latest as HTML
-   ... (可能有一些正常的日志行) ...
-   LotteryPlugin Serializer: EXECUTING for post ID 123, User: some_user  <-- 我们的调试日志
-   LotteryPlugin Serializer: Attempting to find lottery for post_id: 123 <-- 我们的调试日志
-   LotteryPlugin Serializer: Found lottery #1 for post 123. Title: Sample Lottery <-- 我们的调试日志
-   ... (如果序列化器内部出错，这里应该有 "LotteryPlugin Serializer: Error for post ID..." 日志) ...
-
-   ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-   ！！ 这里是关键：寻找一个大写字母开头的错误，例如 ！！
-   ！！   NoMethodError (undefined method `foo' for nil:NilClass):         ！！
-   ！！   /var/www/discourse/plugins/discourse-lottery/app/models/....rb:XX:in `some_method' ！！
-   ！！   /var/www/discourse/vendor/bundle/ruby/....                     ！！
-   ！！   ... (更多堆栈跟踪行) ...                                       ！！
-   ！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-
-     Rendered layout layouts/application.html.erb (Duration: XXms | GC: XXms)
-     Rendered layout layouts/no_ember.html.erb (Duration: XXms | GC: XXms)
-   Completed 500 Internal Server Error in XXXms (ActiveRecord: X.Xms | GC: XX.Xms)
-     Rendered layout layouts/no_ember.html.erb (Duration: XXms | GC: XXms)
-   ```
-
-请您务必提供那段包含实际 Ruby 错误和堆栈跟踪的日志。没有它，我们很难准确判断问题所在。新的日志应该能帮助我们看到序列化器是否被正确执行，以及错误是否发生在
