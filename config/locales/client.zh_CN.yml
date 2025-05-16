@@ -13,6 +13,8 @@ zh_CN:
       max_entries_reached_btn: "名额已满"
       confirm_cost_participation: "参与此抽奖活动将花费 %{cost} 积分。您确定要参与吗？"
       joining: "正在处理您的请求..."
-      success_joined_alert: "您已成功参与抽奖！"
-      success_message_inline: "成功参与！"
-      # generic_error_js: "客户端发生错误。" # 客户端特定错误，如果需要的话
+      success_joined_alert: "您已成功参与抽奖！" # 弹窗消息
+      success_message_inline: "成功参与！" # messageArea 内的行内消息
+      generic_error_client: "发生错误，请重试。" # 客户端通用错误
+      network_error_client: "网络连接错误，请检查您的网络并重试。"
+      csrf_token_error: "无法验证您的请求。请刷新页面后重试。"
