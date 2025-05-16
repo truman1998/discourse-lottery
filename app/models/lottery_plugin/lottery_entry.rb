@@ -4,7 +4,7 @@ module LotteryPlugin
 
     # 关联关系
     belongs_to :lottery, class_name: "LotteryPlugin::Lottery" # 参与记录属于某个抽奖
-    belongs_to :user # 参与记录属于某个用户 (假设 User 模型存在于 Discourse 核心中)
+    belongs_to :user # 参与记录属于某个用户
 
     # 校验规则
     validates :user_id, presence: true # 用户ID不能为空
