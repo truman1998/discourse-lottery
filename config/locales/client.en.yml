@@ -1,0 +1,19 @@
+en:
+  js:
+    lottery:
+      status_limited: "Entries: %{current}/%{total} (%{remaining} remaining)"
+      status_unlimited: "Entries: %{count}"
+      prize: "Prize: %{prizeName}"
+      default_prize: "A Special Prize"
+      default_title: "Community Lottery"
+      cost_info: "Cost: %{cost} points"
+      cost_free: "Cost: Free to enter!"
+      participate_with_cost_btn: "Join Lottery (%{cost} Points)"
+      participate_btn: "Join Lottery"
+      max_entries_reached_btn: "Lottery Full"
+      confirm_cost_participation: "This lottery costs %{cost} points to enter. Are you sure you want to participate?"
+      joining: "Processing your entry..."
+      success_joined_alert: "You have successfully joined the lottery!"
+      success_message_inline: "Successfully joined!"
+      # Error messages are mostly handled by server-side keys, but some JS specific ones can be here.
+      # generic_error_js: "An error occurred on the client side."
