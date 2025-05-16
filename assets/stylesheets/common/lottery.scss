@@ -1,0 +1,86 @@
+// Discourse 抽奖插件的样式
+
+.lottery-box {
+  border: 1px solid var(--primary-low); // 边框颜色使用CSS变量
+  background-color: var(--secondary-very-low); // 背景颜色
+  padding: 15px; // 内边距
+  margin-top: 15px; // 上外边距
+  margin-bottom: 15px; // 下外边距
+  border-radius: 5px; // 圆角
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // 轻微阴影效果
+
+  .lottery-ui-container {
+    display: flex; // 使用 flex 布局
+    flex-direction: column; // 垂直排列子元素
+    gap: 10px; // 子元素之间的间距
+  }
+
+  .lottery-title-display {
+    font-size: var(--font-up-2); // 字体大小使用CSS变量
+    font-weight: bold; // 粗体
+    color: var(--primary-medium); // 颜色
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  .lottery-status-display {
+    font-size: var(--font-0); // 字体大小
+    color: var(--primary); // 颜色
+
+    .lottery-prize {
+      font-weight: bold; // 奖品名称粗体
+      margin-bottom: 5px;
+    }
+
+    .lottery-stats {
+      margin-bottom: 3px; // 统计信息下边距
+    }
+    .lottery-cost {
+      font-style: italic; // 消耗信息斜体
+      color: var(--tertiary); // 颜色
+    }
+  }
+
+  .join-lottery-btn {
+    // 默认使用 Discourse 的 .btn .btn-primary 样式
+    // 如果需要，添加特定的覆盖样式
+    padding: 8px 15px; // 内边距
+    cursor: pointer; // 鼠标指针样式
+    align-self: flex-start; // 按钮左对齐
+
+    &:disabled {
+      cursor: not-allowed; // 禁用时的鼠标指针
+      background-color: var(--primary-low) !important; // 确保覆盖默认的禁用背景色
+      color: var(--primary-medium) !important; // 确保覆盖默认的禁用文字颜色
+    }
+  }
+
+  .lottery-message-area {
+    margin-top: 10px; // 消息区域上边距
+    padding: 8px; // 内边距
+    border-radius: 3px; // 圆角
+    font-size: var(--font-down-1); // 字体大小
+
+    &.lottery-processing { // 处理中状态
+      color: var(--tertiary);
+      background-color: var(--tertiary-low);
+    }
+    &.lottery-success { // 成功状态
+      color: var(--highlight); // Discourse 成功颜色变量
+      background-color: var(--highlight-low);
+    }
+    &.lottery-error { // 错误状态
+      color: var(--danger); // Discourse 错误颜色变量
+      background-color: var(--danger-low);
+    }
+  }
+}
+
+// 如果解析器在 JS 初始化之前注入了特定的占位符类
+.lottery-placeholder {
+  min-height: 50px; // 最小高度，以便在 JS 失败或加载缓慢时可见
+  display: flex;
+  align-items: center; // 垂直居中
+  justify-content: center; // 水平居中
+  color: var(--primary-medium); // 文字颜色
+}
