@@ -107,4 +107,3 @@ end
 # Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
 ```
 
-请再次仔细检查您 GitHub 上的文件，确保它与上面提供的代码完全一致，特别是文件末尾没有任何多余的字符或文本。然后，再尝试 `./launcher rebuild ap
