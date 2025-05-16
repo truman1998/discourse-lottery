@@ -1,7 +1,7 @@
 # Discourse 抽奖插件
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![版本: 1.0.1](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/truman1998/discourse-lottery)
+[![版本: 1.0.2](https://img.shields.io/badge/version-1.0.2-blue.svg)](https://github.com/truman1998/discourse-lottery)
 [![Discourse 版本: 2.8.0.beta10+](https://img.shields.io/badge/Discourse-2.8.0.beta10%2B-brightgreen.svg)](https://www.discourse.org/)
 
 一个为 Discourse 设计的专业抽奖系统插件，允许您在社区内创建互动式的抽奖和赠品活动。此插件支持使用积分参与、设置参与人数限制，并提供实时统计数据。
@@ -30,10 +30,11 @@
 
 1.  **访问您的 Discourse 服务器**: 通过 SSH 登录到您的 Discourse 服务器。
 2.  **导航到插件目录**: `cd /var/discourse/plugins` (或您特定的 Discourse 插件路径)。
-3.  **克隆仓库**:
+3.  **克隆仓库 (如果尚未克隆)**:
     ```bash
     git clone [https://github.com/truman1998/discourse-lottery.git](https://github.com/truman1998/discourse-lottery.git)
     ```
+    如果您已经克隆了，请确保更新到最新版本。
 4.  **重建您的 Discourse 应用**:
     ```bash
     cd /var/discourse
@@ -49,22 +50,22 @@
 ## 开发说明
 
 - **模型 (Models)**:
-    - `Lottery`: 存储抽奖详情 (帖子, 奖品, 消耗, 最大参与人数)。
-    - `LotteryEntry`: 记录用户参与情况。
+    - `LotteryPlugin::Lottery`: 存储抽奖详情 (帖子, 奖品, 消耗, 最大参与人数)。
+    - `LotteryPlugin::LotteryEntry`: 记录用户参与情况。
 - **控制器 (Controller)**:
-    - `EntriesController`: 处理用户参与抽奖的请求。
+    - `LotteryPlugin::EntriesController`: 处理用户参与抽奖的请求。
 - **前端 (Frontend)**:
     - `lottery.js.es6`: 管理抽奖框的互动元素。
     - `lottery.scss`: 为抽奖框提供样式。
 - **本地化 (Localization)**:
-    - `en.yml`, `zh_CN.yml`: 为 UI 元素提供翻译。
+    - `en.yml`, `zh_CN.yml` (服务器端) 和 `client.en.yml`, `client.zh_CN.yml` (客户端) 为 UI 元素提供翻译。
 
 ## 问题排查
 
-- **"Oops" 页面**: 如果安装后看到 "Oops" 页面，请检查服务器上的 `/var/discourse/shared/standalone/log/rails/production.log` (或 `unicorn.stderr.log`) 以获取详细的错误信息。常见原因包括：
-    - 插件文件中的 Ruby 语法错误。
+- **"Oops" 页面**: 如果安装或更新后看到 "Oops" 页面，请检查服务器上的 `/var/discourse/shared/standalone/log/rails/production.log` (或通过 `./launcher enter app` 进入容器后查看 `log/production.log` 或 `log/unicorn.stderr.log`) 以获取详细的 Ruby 错误信息。常见原因包括：
+    - 插件文件中的 Ruby 语法错误或 `NameError` (例如，类或模块名称不正确)。
     - 文件缺失或命名不正确 (特别是迁移文件、模型或本地化文件)。
-    - 数据库迁移问题。
+    - 数据库迁移问题 (尽管您的日志显示迁移已运行)。
     - `parser.rb` 逻辑中的问题。
 - **按钮不出现/不工作**: 检查浏览器的开发者控制台是否有 JavaScript 错误。确保插件的 JavaScript 和 CSS 资源已正确加载。
 
