@@ -11,5 +11,5 @@ zh_CN:
       already_participated: "您已经参与过此抽奖活动。"
       transaction_failed: "由于事务错误，无法完成您的参与。请重试。"
       points_system_error: "积分系统出现问题，无法扣除积分。"
-      generic_error: "发生意外错误，请重试。"
-      network_error: "网络连接错误，请检查您的网络并重试。"
+      generic_error: "发生意外错误，请重试。" # 服务器端通用错误
+      # network_error 键移至 client.zh_CN.yml 因为它主要是客户端关注的问题
