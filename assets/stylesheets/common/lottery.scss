@@ -43,7 +43,6 @@
 
   .join-lottery-btn {
     // 默认使用 Discourse 的 .btn .btn-primary 样式
-    // 如果需要，添加特定的覆盖样式
     padding: 8px 15px; // 内边距
     cursor: pointer; // 鼠标指针样式
     align-self: flex-start; // 按钮左对齐
@@ -60,6 +59,7 @@
     padding: 8px; // 内边距
     border-radius: 3px; // 圆角
     font-size: var(--font-down-1); // 字体大小
+    min-height: 1.5em; // 给消息区域一个最小高度，避免布局跳动
 
     &.lottery-processing { // 处理中状态
       color: var(--tertiary);
@@ -76,11 +76,7 @@
   }
 }
 
-// 如果解析器在 JS 初始化之前注入了特定的占位符类
-.lottery-placeholder {
-  min-height: 50px; // 最小高度，以便在 JS 失败或加载缓慢时可见
-  display: flex;
-  align-items: center; // 垂直居中
-  justify-content: center; // 水平居中
-  color: var(--primary-medium); // 文字颜色
+// 用于JS自动创建的抽奖盒子的额外标识（如果需要）
+.auto-created-lottery-box {
+  // border: 1px dashed var(--tertiary); // 示例：用于调试的边框
 }
