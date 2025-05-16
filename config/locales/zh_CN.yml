@@ -1,0 +1,15 @@
+zh_CN:
+  site_settings:
+    lottery_enabled: "启用抽奖插件"
+  lottery:
+    points_deduction_reason: "参与抽奖活动: %{title}"
+    success_joined: "成功参与抽奖！"
+    errors:
+      not_found: "抽奖活动未找到。"
+      reached_max_entries: "此抽奖活动参与人数已达上限。"
+      insufficient_points: "您的积分不足以参与。需要: %{cost} 积分。"
+      already_participated: "您已经参与过此抽奖活动。"
+      transaction_failed: "由于事务错误，无法完成您的参与。请重试。"
+      points_system_error: "积分系统出现问题，无法扣除积分。"
+      generic_error: "发生意外错误，请重试。"
+      network_error: "网络连接错误，请检查您的网络并重试。"
