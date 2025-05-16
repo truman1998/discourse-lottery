@@ -11,5 +11,5 @@ en:
       already_participated: "You have already participated in this lottery."
       transaction_failed: "Could not complete your participation due to a transaction error. Please try again."
       points_system_error: "There was an issue with the points system. Could not deduct points."
-      generic_error: "An unexpected error occurred. Please try again."
-      network_error: "A network error occurred. Please check your connection and try again."
+      generic_error: "An unexpected error occurred. Please try again." # Server-side generic
+      # network_error key moved to client.en.yml as it's primarily a client-side concern
