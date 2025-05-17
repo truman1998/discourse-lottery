@@ -106,4 +106,12 @@ end
 
 # Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
 ```
-这个文件的最后一行应该是 `# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."` 或者 `end` (如果上面那行注释被删掉的话)。**之后不应该有任何其他内容
+
+**在您百分之百确认 GitHub 上的 `plugin.rb` 文件已经修正为上面这个纯净版本之后，才在您的服务器上重新构建：**
+
+```bash
+cd /var/discourse
+./launcher rebuild app
+```
+
+请您这次操作时务必加倍小心，确保 GitHub 上的文件是完全正确的。这个问题已经持续了很久，根本原因一直都是 GitHub 上的文件内容不
