@@ -2,7 +2,7 @@
     # about: 一个在 Discourse 帖子中创建抽奖的插件。
     # version: 1.0.6
     # authors: 您的名字 (例如, Truman)
-    # url: https://github.com/truman1998/discourse-lottery
+    # url: [https://github.com/truman1998/discourse-lottery](https://github.com/truman1998/discourse-lottery)
     # required_version: 2.8.0.beta10
 
     # Rails.logger.info "LotteryPlugin: plugin.rb TOP LEVEL - File is being loaded."
