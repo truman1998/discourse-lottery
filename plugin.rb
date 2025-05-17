@@ -104,3 +104,6 @@ after_initialize do
   Rails.logger.info "LotteryPlugin: =================== END of after_initialize ==================="
 end
 
+# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
+```
+这个文件的最后一行应该是 `# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."` 或者 `end` (如果上面那行注释被删掉的话)。**之后不应该有任何其他内容
