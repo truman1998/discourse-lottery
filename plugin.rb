@@ -104,7 +104,3 @@ after_initialize do
   Rails.logger.info "LotteryPlugin: =================== END of after_initialize ==================="
 end
 
-# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
-```
-
-请您一定先完成 GitHub 上的文件更新，然后再进行重建。这个问题的原因非常明确，就是 GitHub 上的 `plugin.rb` 文件内容不
