@@ -1,6 +1,6 @@
 # name: discourse-lottery
-# about: A basic Discourse plugin.
-# version: 1.1.0
+# about: A Discourse plugin to create and manage lotteries.
+# version: 1.0.9
 # authors: Truman
 # url: https://github.com/truman1998/discourse-lottery
 # required_version: 2.8.0.beta10
@@ -10,10 +10,10 @@ enabled_site_setting :lottery_enabled
 register_asset "stylesheets/common/lottery.scss"
 
 after_initialize do
-  Rails.logger.info "LotteryPlugin: =================== START of after_initialize (v1.1.0) ==================="
+  Rails.logger.info "LotteryPlugin: =================== START of after_initialize (v1.0.9) ==================="
   begin
     module ::LotteryPlugin
-      PLUGIN_NAME ||= "discourse-lottery".freeze # 使用元数据中的 name
+      PLUGIN_NAME ||= "discourse-lottery".freeze
 
       class Engine < ::Rails::Engine
         engine_name PLUGIN_NAME
@@ -22,7 +22,6 @@ after_initialize do
     end
     Rails.logger.info "LotteryPlugin: Engine defined."
 
-    # 确保在这里加载所有依赖，避免 NameError
     require_relative "app/models/lottery_plugin/lottery"
     require_relative "app/models/lottery_plugin/lottery_entry"
     Rails.logger.info "LotteryPlugin: Models loaded (Lottery, LotteryEntry)."
@@ -32,7 +31,7 @@ after_initialize do
 
     DiscourseEvent.on(:post_process_cooked) do |doc, post|
       begin
-        if SiteSetting.lottery_enabled && post && doc && post.persisted? # 确保 post 对象是持久化的
+        if SiteSetting.lottery_enabled && post && doc && post.persisted?
           LotteryPlugin::Parser.parse(post, doc)
         end
       rescue => e
@@ -86,5 +85,5 @@ after_initialize do
   rescue => e
     Rails.logger.error "LotteryPlugin: =================== FATAL ERROR during after_initialize ===================\nError: #{e.class.name} - #{e.message}\nBacktrace:\n#{e.backtrace.join("\n")}"
   end
-  Rails.logger.info "LotteryPlugin: =================== END of after_initialize (v1.1.0) ==================="
+  Rails.logger.info "LotteryPlugin: =================== END of after_initialize (v1.0.9) ==================="
 end
