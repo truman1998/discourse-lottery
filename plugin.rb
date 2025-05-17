@@ -104,31 +104,3 @@ after_initialize do
   Rails.logger.info "LotteryPlugin: =================== END of after_initialize ==================="
 end
 
-# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
-```
-
-**关键更改：**
-在文件顶部的元数据注释中，将：
-`# url: [https://github.com/truman1998/discourse-lottery](https://github.com/truman1998/discourse-lottery)`
-修改为：
-`# url: https://github.com/truman1998/discourse-lottery`
-
-**接下来的步骤：**
-
-1.  **更新 GitHub 仓库**：
-    * 将上面提供的 `plugin.rb` (版本 1.0.7) 的内容替换掉您 GitHub 仓库 (`https://github.com/truman1998/discourse-lottery.git`) 中的 `plugin.rb` 文件。
-    * **提交 (Commit) 并推送 (Push) 这个更改**到您的 GitHub 仓库的默认分支 (通常是 `main`)。
-
-2.  **再次确认 GitHub 上的文件**：
-    在推送后，请再次访问您 `plugin.rb` 文件的 "Raw" 链接 ([https://raw.githubusercontent.com/truman1998/discourse-lottery/main/plugin.rb](https://raw.githubusercontent.com/truman1998/discourse-lottery/main/plugin.rb))，确保 `url:` 那一行确实已经被修正为纯文本链接。
-
-3.  **重新构建容器**：
-    在您的服务器上执行：
-    ```bash
-    cd /var/discourse
-    ./launcher rebuild app
-    ```
-
-这次，由于插件元数据应该是正确的，`assets:precompile:build` 阶段的 "Unable to parse plugin name" 错误应该会消失。如果之前的 `TypeError: Cannot read properties of undefined (reading 'cleanup')` 错误是由于元数据解析失败引起的连锁反应，那么它也可能随之解决。
-
-请您仔细操作，特别是确保 GitHub 上的文件内容是正确的。如果构建仍然失败，请提供最新的完整构建
