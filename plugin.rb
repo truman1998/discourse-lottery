@@ -1,7 +1,7 @@
 # name: discourse-lottery
-# about: 一个在 Discourse 帖子中创建抽奖的插件。
-# version: 1.0.8
-# authors: 您的名字 (例如, Truman)
+# about: A plugin to create lotteries in Discourse posts.
+# version: 1.0.9
+# authors: Truman # <-- 已修改为纯 ASCII
 # url: https://github.com/truman1998/discourse-lottery
 # required_version: 2.8.0.beta10
 
@@ -104,3 +104,4 @@ after_initialize do
   Rails.logger.info "LotteryPlugin: =================== END of after_initialize ==================="
 end
 
+# Rails.logger.info "LotteryPlugin: plugin.rb BOTTOM LEVEL - File loading complete."
